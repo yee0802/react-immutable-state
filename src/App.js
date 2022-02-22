@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react"
+import {initialWorkouts, generateWorkout} from "./Workouts.js"
+import "./App.css"
 
 function App() {
+  const [workouts, setWorkouts] = useState(initialWorkouts)
+
+  const addNewWorkout = () => {
+    const newWorkout = generateWorkout()
+    console.log("addNewWorkout:", addNewWorkout)
+  }
+
+  const deleteWorkout = (workout) => {
+    console.log("deleteWorkout:", workout)
+  }
+
+  const completeWorkout = (workout) => {
+    console.log("completeWorkout:", workout)
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>🏋️‍♀️Workout Generator</h1>
+      <button onClick={addNewWorkout}>Add New Workout</button>
+      <ul>
+        {workouts.map((workout, index) => (
+          <li key={index}>
+            <p>
+              {workout.sets}x sets of <strong>{workout.reps}x{workout.exercise}</strong> with {workout.rest} seconds rest
+            </p>
+            {!workout.done && 
+              <button onClick={e=>completeWorkout(workout)}>Done</button>}
+            {workout.done && 
+             <p>✅</p>}
+            <button onClick={e=>deleteWorkout(workout)}>Delete</button>
+          </li>
+        ))}
+      </ul>
+      
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
