@@ -3,6 +3,11 @@
 ## Learning Objectives
 - Build a React component that holds an immutable array as state and updates it
 
+## Set Up
+* Fork and clone this repository
+* `npm install` to install dependencies
+* `npm start` to start the React development server
+
 ## Instructions
 In this exercise you are provided with a simple component that maintains a list of randomly generated workouts. You must implement the provided function placeholders to make the application functional. To do this, you will need to understand how to manipulate an immutable array held as React state.
 
