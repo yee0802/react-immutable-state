@@ -21,4 +21,7 @@ In this exercise you are provided with a simple component that maintains a list 
 - Implement the `completeWorkout` function to set the `done` boolean to true on the passed `workout`and update `workouts` state in an immutable way.
 
 ## Extension
+- Add a checkbox with the label "Show Done Only" to allow the user to toggle between all workouts and only workouts that are done.
+
+## Extension 2
 - Add a new button to each workout that when clicked replaces the workout with another random workout
