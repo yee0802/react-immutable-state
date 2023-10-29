@@ -1,34 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react"
+import {initialWorkouts, generateWorkout} from "./Workouts.js"
+import "./App.css"
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [workouts, setWorkouts] = useState(initialWorkouts)
+
+  const addNewWorkout = () => {
+    const newWorkout = generateWorkout()
+    console.log("addNewWorkout:", newWorkout)
+  }
+
+  const deleteWorkout = (workout) => {
+    console.log("deleteWorkout:", workout)
+  }
+
+  const completeWorkout = (workout) => {
+    console.log("completeWorkout:", workout)
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="App">
+      <h1>🏋️‍♀️Workout Generator</h1>
+      <button onClick={addNewWorkout}>Add New Workout</button>
+      <ul>
+        {workouts.map((workout, index) => (
+          <li key={index}>
+            <p>
+              {workout.sets}x sets of <strong>{workout.reps}x{workout.exercise}</strong> with {workout.rest} seconds rest
+            </p>
+            {!workout.done &&
+              <button onClick={e=>completeWorkout(workout)}>Done</button>}
+            {workout.done &&
+              <p>✅</p>}
+            <button onClick={e=>deleteWorkout(workout)}>Delete</button>
+          </li>
+        ))}
+      </ul>
+
+    </div>
   )
 }
 
