@@ -7,15 +7,22 @@ function App() {
 
   const addNewWorkout = () => {
     const newWorkout = generateWorkout()
-    console.log("addNewWorkout:", newWorkout)
+    
+    setWorkouts([...workouts, newWorkout])
   }
 
   const deleteWorkout = (workout) => {
-    console.log("deleteWorkout:", workout)
+    const updatedWorkouts = workouts.filter(exercise  => exercise !== workout)
+
+    setWorkouts(updatedWorkouts)
   }
 
   const completeWorkout = (workout) => {
-    console.log("completeWorkout:", workout)
+    const updatedWorkouts = workouts.map(exercise => {
+      return exercise === workout ? { ...exercise, done: !exercise.done  } : exercise
+    })
+    
+    setWorkouts(updatedWorkouts)
   }
 
   return (
